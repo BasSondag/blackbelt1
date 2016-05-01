@@ -1,0 +1,22 @@
+<a href="/brigth_ideas">Bright Ideas!</a>
+
+<br>
+<br>
+<br>
+<table>
+	<tr><td>Name:</td>
+		<td><%= @user.name %></td>
+	</tr>
+	<tr><td>Alias:</td>
+		<td><%= @user.alias %></td>
+	</tr>
+	<tr><td>E-mail:</td>
+		<td><%= @user.email %></td>
+	</tr>
+	<tr><td>Number of Ideas:</td>
+		<td><%= @user.brigth_ideas.count %></td>
+	</tr>
+	<tr><td>Number of Likes:</td>
+		<td><%=@user.ideas_liked.count%></td>
+	</tr>
+</table>

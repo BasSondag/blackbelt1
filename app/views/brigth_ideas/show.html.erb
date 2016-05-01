@@ -1,0 +1,26 @@
+<a href="/brigth_ideas">Brigth Ideas!</a>
+<br>
+<br>
+<br>
+<br>
+
+
+<table>
+	<tr>
+		<td><a href="/users/<%= @idea.user.id %>"><%= @idea.user.alias %></a> says...</td>
+		<td class="idea" colspan=2><%= @idea.content %></td>
+	</tr>
+</table>
+<br>
+<br>
+<h2>People who liked this idea:</h2>
+<table>
+	<tr><th>Alias:</th>
+		<th>Name:</th>
+	</tr>
+	<% @idea.likes.select(:user_id).distinct.each do |liker| %>
+		<tr><td><a href="/users/<%= liker.user_id %>"><%= liker.user.alias %></a></td>
+			<td><%= liker.user.name %></td>
+		</tr>
+	<% end %>
+</table>

@@ -1,0 +1,2 @@
+module BrigthIdeasHelper
+end

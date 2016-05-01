@@ -1,0 +1,37 @@
+<h1>Hi <%= current_user.name%>!</h1>
+
+<form action="/brigth_ideas" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+	<textarea name="idea[content]" rows="5" cols="35"></textarea><br>
+	<input type="hidden" name="idea[user_id]" value="<%= current_user.id %>">
+	<input type="submit" value="Idea!">
+</form>
+
+
+
+
+<table>
+<% if @ideas %>
+	<% @ideas.each do |idea| %>
+		<tr>
+			<td><a href="/users/<%= idea.user.id %>"><%= idea.user.alias %></a> says...</td>
+			<td class="idea" colspan=2><%= idea.content %></td>
+			<% if current_user.id == idea.user_id %>
+				<td>
+					<form action="/brigth_ideas/<%=idea.id%>" method="post">
+						<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+						<input type="hidden" name="_method" value="delete">
+						<input type="hidden" name="idea_id" value="<%= idea.id %>">
+						<input type="submit" value="Delete">
+					</form>
+				</td>
+			<% end %>
+		</tr>
+		<tr>
+			<td> </td>
+			<td ><a href="/likes/<%=idea.id%>" data-method="post">Like</a></td>
+				<td><a href="/brigth_ideas/<%= idea.id %>"><%= pluralize(idea.users_liked.count, "person") %></a> liked this</td>
+		</tr>
+	<% end %>
+<%end%>	
+</table>
